@@ -1,0 +1,83 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Website</title>
+</head>
+<style>
+  .product-container {
+    display: flex;
+  }
+
+  .product {
+    margin-right: 20px;
+  }
+</style>
+
+<body>
+  <h1>Products</h1>
+  <section>
+    <div class="product-container">
+      <div class="product">
+        <img src="./images/echiquier_header.png" alt="hedhi heya" style="max-width: 150px; max-height: 150px;">
+        <input type="checkbox" id="product1" value="Product 1">
+      </div>
+
+      <div class="product">
+        <img src="./images/2.jpg" alt="another product" style="max-width: 150px; max-height: 150px;">
+        <input type="checkbox" id="product2" value="Product 2">
+      </div>
+
+      <div class="product">
+        <img src="./images/echiquier_header.png" alt="yet another product" style="max-width: 150px; max-height: 150px;">
+        <input type="checkbox" id="product3" value="Product 3">
+      </div>
+    </div>
+
+
+    <label for="emailInput">Enter your email:</label>
+    <br />
+    <input type="email" id="emailInput" placeholder="Your email address">
+    <button onclick="sendEmail()">Submit</button>
+  </section>
+
+  <script>
+    function sendEmail() {
+      const emailInput = document.getElementById('emailInput');
+      const email = emailInput.value;
+
+      if (!email || !email.trim()) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      
+      const checkboxes = document.querySelectorAll('.product input[type="checkbox"]');
+      let selectedProduct;
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          selectedProduct = checkbox.value;
+        }
+      });
+
+      if (!selectedProduct) {
+        alert('Please select a product.');
+        return;
+      }
+
+      const url = `/send-email?email=${email}&product=${selectedProduct}`;
+      console.log(`Sending email to: ${email} for ${selectedProduct}`);
+
+      fetch(url)
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
+  </script>
+
+</body>
+
+</html>
