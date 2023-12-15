@@ -4,7 +4,6 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 const { EventEmitter } = require('events');
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
