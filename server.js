@@ -40,7 +40,7 @@ eventBus.on('sendEmail', (userEmail, productName) => {
     from: process.env.EMAIL_USER,
     to: [userEmail, process.env.EMAIL_USER],
     subject: `Thank you for clicking on ${productName}!`,
-    text: `We appreciate your interest in ${productName}.`,
+    text: `From Rayen Abed the owner of ChessBoard Store and the best chess player ever, We appreciate your interest in ${productName}.`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
